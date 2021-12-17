@@ -1,0 +1,21 @@
+
+Documentation for uwuscwipt
+
+INSTRUCTION SET:
+	general instructions (uwu)
+	uwu: push a single byte to the stack (if value given is higher than 255, the lowest 8 bits will be pushed.
+	UWU: pop top of stack into register (see register)
+	UwU: exit with the current value of register as the return code.
+	Uwu: move value to the register
+	UWu: write arg bytes until the current top of stack
+	uWU: read arg bytes from user abd push them to the stack
+
+	logical and arithmetic instructions (owo)
+	owo: add a 2 numbers and place the result in the register
+	OWO: substract two numbers and place the result in the register
+	OwO: increment the register
+	oWo: decrement the register
+
+REGISTER:
+	uwuscwipt has a 64-bit general purpose register that you can use to store values. you can reference it as am argument in thw program with the "reg" keyword. e.g. uwu reg will push the lowest byte of the register into the stack.
+	
