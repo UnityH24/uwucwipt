@@ -72,7 +72,7 @@ def read_program_from_file(file):
 def uwuc(program, filename):
     ip = 0
     program_len = len(program)
-    write("\tsub %rsp, ${program_len // 2 + 1}")
+    write(f"\tsubq ${program_len // 2 + 1}, %rsp")
     while ip < program_len:
         token = program[ip]
         write(f"i{ip}:")
@@ -105,18 +105,18 @@ def uwuc(program, filename):
             count = program[ip]
             write("/*\tWRITE\t*/")
             write("\tmovq %rdi, 4(%rsp)")
-            write("\tsubq ${count}, %rsp")
+            write(f"\tsubq ${count - 1}, %rsp")
             write("\tmovq $1, %rax")
-            write("\tmovq $1, rdi")
+            write("\tmovq $1, %rdi")
             write("\tmovq %rsp, %rsi")
-            write("\tmovq ${count}, %rdx")
+            write(f"\tmovq ${count}, %rdx")
             write("\tsyscall")
-            write("\taddq ${count}, %rsp")
+            write(f"\taddq ${count - 1}, %rsp")
             write("\tmovq 4(%rsp), %rdi")
 
         ip += 1
     asmpath = os.path.join("/tmp/", f"temp-{filename}.s")
-    objpath = os.path.join("/tmp/", "temp-{filename}.o")
+    objpath = os.path.join("/tmp/", f"temp-{filename}.o")
     with open(asmpath, 'w') as f:
         f.write(assembly)
     ps = subprocess.run(["as", "-o", objpath, asmpath])

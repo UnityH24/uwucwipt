@@ -17,5 +17,5 @@ INSTRUCTION SET:
 	oWo: decrement the register
 
 REGISTER:
-	uwuscwipt has a 64-bit general purpose register that you can use to store values. you can reference it as am argument in thw program with the "reg" keyword. e.g. uwu reg will push the lowest byte of the register into the stack.
+	uwuscwipt has a 64-bit general purpose register that you can use to store values. you can reference it as am argument in the program with the "reg" keyword. e.g. uwu reg will push the lowest byte of the register into the stack.
 	
